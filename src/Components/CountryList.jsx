@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { fetchUsers } from "../Utilities/utils";
+import { fetchCompany } from "../Utilities/utils";
 
-const UserList = () => {
-  const [users, setUsers] = useState([]);
-  const [regionFilter, setRegionFilter] = useState("all"); 
+const CompanyList = () => {
+  const [company, setCompany] = useState([]);
+  const [regionFilter, setRegionFilter] = useState("all");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const getUsers = async () => {
+    const getCompany = async () => {
       try {
-        const getUser = await fetchUsers();
+        const getUser = await fetchCompany();
         setLoading(false);
-        setUsers(getUser);
+        setCompany(getUser);
       } catch (error) {
         console.error("Error fetching users:", error);
         setError(error);
       }
     };
 
-    getUsers();
+    getCompany();
   }, []);
 
- 
-  const filteredCountries = users.filter((user) => {
+
+  const filteredCountries = company.filter((user) => {
     if (regionFilter === "all") {
       return true; 
     } else {
@@ -46,32 +46,33 @@ const UserList = () => {
         <option value="Oceania">Oceania</option>
       </select>
       <ul className="user-ul">
+       
         {loading ? (
           <p>Loading...</p>
         ) : (
-          filteredCountries.map((user, i) => (
-            <li key={i + 1} className="user-item">
-              <div className="user-info">
-                <span className="user-name">Name: {user.name.common}</span>
+          filteredCountries.map((company, i) => (
+            <li key={i + 1} className="company-item">
+              <div className="company-info">
+                <span className="company-name">Name: {company.name.common}</span>
               </div>
-              <div className="user-info">
-                <span className="user-username">{user.region}</span>
+              <div className="company-info">
+                <span className="company-username">{company.region}</span>
               </div>
-              <div className="user-info">
-                <span className="user-username">{user.capital}</span>
+              <div className="company-info">
+                <span className="company-username">{company.capital}</span>
               </div>
-              <div className="user-info">
-                <span className="user-username">
-                  {user.translations.ara.official}
+              <div className="company-info">
+                <span className="company-username">
+                  {company.translations.ara.official}
                 </span>
               </div>
-              <div className="user-info">
-                <img src={user.flags.png} alt="Flag" />
+              <div className="company-info">
+                <img src={company.flags.png} alt="Flag" />
               </div>
               <div className="user-info">
-                <span className="user-">{user.continents}</span>
+                <span className="user-">{company.continents}</span>
               </div>
-              <div className="user-actions"></div>
+             
             </li>
           ))
         )}
@@ -81,4 +82,4 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+export default CompanyList ;
