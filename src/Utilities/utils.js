@@ -63,3 +63,19 @@ export const fetchCountryDetailsByCapital = async (capital) => {
     throw error;
   }
 };
+
+
+
+// export const fetchCountryDetailsByCapital = async (commonName) => {
+//   try {
+//     const response = await axios.get(`${apiUrl}${commonName}`);
+//     if (response.data && response.data.length > 0) {
+//       return response.data[0];
+//     } else {
+//       throw new Error("Country not found");
+//     }
+//   } catch (error) {
+//     console.error("Error fetching country details:", error);
+//     throw error;
+//   }
+// };

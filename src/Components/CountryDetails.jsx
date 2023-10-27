@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchCountryDetailsByCapital } from '../Utilities/utils'; // Update the function name
-import './details.css'
+import { fetchCountryDetailsByCapital } from '../Utilities/utils';
+import './details.css';
 
 const CountryDetails = () => {
-  const { capital } = useParams(); // Access the 'capital' parameter from the URL
-
+  const { capital } = useParams();
   const [country, setCountry] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,11 +12,10 @@ const CountryDetails = () => {
   useEffect(() => {
     const getCountryDetails = async () => {
       try {
-        const countryData = await fetchCountryDetailsByCapital(capital); // Use the 'capital' parameter
-        setCountry(countryData);
+        const countryDetails = await fetchCountryDetailsByCapital(capital);
+        setCountry(countryDetails);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching country details:', error);
         setError(error);
         setLoading(false);
       }
@@ -27,14 +25,14 @@ const CountryDetails = () => {
   }, [capital]);
 
   return (
-    <div className="">
+    <div className="details">
       <h1 className="text-3xl font-bold mb-4">Country Details</h1>
       {loading ? (
         <p>Loading...</p>
       ) : country ? (
-        <div className='details'>
+        <div>
           <h2 className="text-xl font-semibold mb-2">Country: {country.name.common}</h2>
-          <img src={country.flags.png} alt="Flag" className="flagImage" /> {/* Display the flag here */}
+          <img src={country.flags.png} alt="Flag" className="flagImage" />
           <div className="grid grid-cols-2 gap-4">
             <div>
               <h3 className="text-lg font-semibold mb-2">Basic Information</h3>
