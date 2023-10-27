@@ -1,8 +1,26 @@
+
+.heading{
+    font-weight: bolder;
+    font-size: 1000;
+    color: rgb(46, 54, 97);
+    margin-top: 2%;
+}
 .countries{
     display: grid;
     grid-template-columns: repeat(3,1fr);
     margin-top: 5%;
     margin-left: 8%;
+
+}
+.allregions{
+    padding: 12px 15px;
+
+    text-decoration: none;
+    margin-left: 2%;
+    background-color: greenyellow;
+    border-style: none;
+    margin-bottom: 6%;
+  background-color: transparent;
 
 }
 input{
@@ -21,23 +39,31 @@ input{
     padding: 12px 44px;
     border-radius: 10px;
     margin-left: 2%;
+    border-style: none;
+    background-color: rgb(112, 210, 112);
+
     
 }
-.addbutton :hover{
-    background-color: yellow;
+.addbutton:hover{
+    background-color: greenyellow;
+    color: white; 
+    border-style: none;
 }
 .deletebutton,
-.editbutton{
-    
+.editbutton,
+.updatebutton{
+    background-color: rgb(112, 210, 112);
+    border-radius: 10px;
     padding: 12px 44px;
-    margin-right: 12px;
+    margin-right: 22px;
     margin-top: 2%;
-
+margin-left: 20px;
+border-style: none;
 }
 .deletebutton:hover,
-.editbutton:hover {
-    background-color: green;
-    color: white; 
+.editbutton:hover,
+.updatebutton:hover {
+    background-color: greenyellow;    color: white; 
 }
 .flagImage{
     width: 300px;

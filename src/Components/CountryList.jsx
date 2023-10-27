@@ -92,15 +92,15 @@ const CountryList = () => {
 
   return (
     <div className="country-list p-4">
-      <h1 className="text-3xl font-bold mb-4">Country List</h1>
+      <h1 className="heading">Country List</h1>
 
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
         <select
           value={regionFilter}
           onChange={(e) => setRegionFilter(e.target.value)}
-          className="w-full md:w-2/5 p-2 border rounded-md mb-2 md:mb-0"
+          className="allregions"
         >
-          <option value="all">All Regions</option>
+          <option value="all" >All Regions</option>
           <option value="Africa">Africa</option>
           <option value="Americas">Americas</option>
           <option value="Asia">Asia</option>
@@ -113,7 +113,7 @@ const CountryList = () => {
           placeholder="Search by Name"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full md:w-2/5 p-2 border rounded-md mb-2 md:mb-0"
+          className="search"
         />
 
         <div className="text-right">
@@ -159,7 +159,7 @@ const CountryList = () => {
             {editingCountry ? (
               <button
                 onClick={updateCountryData}
-                className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
+                className="updatebutton"
               >
                 Update
               </button>
