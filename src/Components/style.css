@@ -4,6 +4,7 @@
     font-size: 1000;
     color: rgb(46, 54, 97);
     margin-top: 2%;
+    text-align: center
 }
 .countries{
     display: grid;
@@ -26,10 +27,16 @@
 input{
     padding: 12px 15px;
 
+
     text-decoration: none;
     margin-left: 2%;
     border-style: none;
     background-color: greenyellow;
+    margin-right: 5.5%;
+}
+.regions{
+    margin-left: 110px;
+   
 }
 /* button{
     padding: 15px 15px;
@@ -38,11 +45,14 @@ input{
 .addbutton{
     padding: 12px 44px;
     border-radius: 10px;
-    margin-left: 2%;
+    /* margin-left: 22%; */
     border-style: none;
     background-color: rgb(112, 210, 112);
 
     
+}
+.categories{
+   
 }
 .addbutton:hover{
     background-color: greenyellow;
@@ -69,4 +79,7 @@ border-style: none;
     width: 300px;
     height: 200px;
     margin-top: 5%;
+}
+.details{
+    align-items: center;
 }

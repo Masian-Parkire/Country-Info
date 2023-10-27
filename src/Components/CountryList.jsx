@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchCountry, updateCountry, addCountry } from "../Utilities/utils";
+import { Link } from 'react-router-dom';
+
 import './style.css'
 
 const CountryList = () => {
@@ -24,7 +26,7 @@ const CountryList = () => {
         const countryData = await fetchCountry();
         setLoading(false);
         setCountries(countryData);
-        console.log({countryData});
+        console.log({ countryData });
       } catch (error) {
         console.error("Error fetching countries:", error);
         setError(error);
@@ -64,7 +66,7 @@ const CountryList = () => {
 
   const editCountry = (country) => {
     setEditingCountry(country);
-    setNewCountry({ ...country }); 
+    setNewCountry({ ...country });
   };
 
   const updateCountryData = () => {
@@ -94,7 +96,7 @@ const CountryList = () => {
     <div className="country-list p-4">
       <h1 className="heading">Country List</h1>
 
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+      <div className="regions">
         <select
           value={regionFilter}
           onChange={(e) => setRegionFilter(e.target.value)}
@@ -107,7 +109,7 @@ const CountryList = () => {
           <option value="Europe">Europe</option>
           <option value="Oceania">Oceania</option>
         </select>
-        
+
         <input
           type="text"
           placeholder="Search by Name"
@@ -118,7 +120,7 @@ const CountryList = () => {
 
         <div className="text-right">
           <h2 className="text-xl font-semibold mb-2">Add/Update Country</h2>
-          <div className="flex flex-col items-center md:items-start">
+          <div className="categories">
             <input
               type="text"
               placeholder="Name"
@@ -146,7 +148,7 @@ const CountryList = () => {
               }
               className="w-full md:w-64 p-2 border rounded-md mb-2"
             />
-    
+
             <input
               type="text"
               placeholder="Continents"
@@ -181,7 +183,10 @@ const CountryList = () => {
         <div className="countries">
           {filteredCountries.map((country, i) => (
             <div key={i + 1} className="country-item p-4 border rounded-md shadow">
-              <img src={country.flags.png} alt="Flag" className="flagImage" />
+              <Link to={`/country/${country.id}`}>
+                <img src={country.flags.png} alt="Flag" className="flagImage" />
+              </Link>
+
               <div className="country-info">
                 <span className="country-name">Name: {country.name.common}</span>
               </div>
