@@ -1,13 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 
-import CompanyList from './Components/CountryList';
+import CountryList  from './Components/CountryList';
 
 
 function App() {
   return (
     <div className="App">
-      <CompanyList/>
+      <CountryList/>
      
       
     </div>

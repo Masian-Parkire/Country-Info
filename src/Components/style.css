@@ -1,0 +1,46 @@
+.countries{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin-top: 5%;
+    margin-left: 8%;
+
+}
+input{
+    padding: 12px 15px;
+
+    text-decoration: none;
+    margin-left: 2%;
+    border-style: none;
+    background-color: greenyellow;
+}
+/* button{
+    padding: 15px 15px;
+    margin-right: 3%;
+} */
+.addbutton{
+    padding: 12px 44px;
+    border-radius: 10px;
+    margin-left: 2%;
+    
+}
+.addbutton :hover{
+    background-color: yellow;
+}
+.deletebutton,
+.editbutton{
+    
+    padding: 12px 44px;
+    margin-right: 12px;
+    margin-top: 2%;
+
+}
+.deletebutton:hover,
+.editbutton:hover {
+    background-color: green;
+    color: white; 
+}
+.flagImage{
+    width: 300px;
+    height: 200px;
+    margin-top: 5%;
+}
