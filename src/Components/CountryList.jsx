@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { fetchCountry, updateCountry, addCountry } from "../Utilities/utils";
+import 'tailwindcss/tailwind.css'; // Import Tailwind CSS
+import { fetchCountry } from "../Utilities/utils";
 import { Link } from 'react-router-dom';
-
-import './style.css'
 
 const CountryList = () => {
   const [countries, setCountries] = useState([]);
@@ -93,16 +92,18 @@ const CountryList = () => {
   };
 
   return (
-    <div className="country-list p-4">
-      <h1 className="heading">Country List</h1>
+    <div className="bg-black p-4">
+      <h1 className="text-2xl font-bold text-white text-center my-8">
+        Country List
+      </h1>
 
-      <div className="regions">
+      <div className="flex justify-center items-center my-4">
         <select
           value={regionFilter}
           onChange={(e) => setRegionFilter(e.target.value)}
-          className="allregions"
+          className="px-4 py-2 bg-green-300 text-black rounded-lg border-2 hover:bg-indigo-900"
         >
-          <option value="all" >All Regions</option>
+          <option value="all">All Regions</option>
           <option value="Africa">Africa</option>
           <option value="Americas">Americas</option>
           <option value="Asia">Asia</option>
@@ -115,105 +116,98 @@ const CountryList = () => {
           placeholder="Search by Name"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="search"
+          className="px-4 py-2 bg-green-300 text-white rounded-lg border-2 hover:bg-indigo-900 ml-4"
         />
+      </div>
 
-        <div className="text-right">
-          <h2 className="text-xl font-semibold mb-2">Add/Update Country</h2>
-          <div className="categories">
-            <input
-              type="text"
-              placeholder="Name"
-              value={newCountry.name.common}
-              onChange={(e) =>
-                setNewCountry({ ...newCountry, name: e.target.value })
-              }
-              className="w-full md:w-64 p-2 border rounded-md mb-2"
-            />
-            <input
-              type="text"
-              placeholder="Region"
-              value={newCountry.region}
-              onChange={(e) =>
-                setNewCountry({ ...newCountry, region: e.target.value })
-              }
-              className="w-full md:w-64 p-2 border rounded-md mb-2"
-            />
-            <input
-              type="text"
-              placeholder="Capital"
-              value={newCountry.capital}
-              onChange={(e) =>
-                setNewCountry({ ...newCountry, capital: e.target.value })
-              }
-              className="w-full md:w-64 p-2 border rounded-md mb-2"
-            />
+      <div className="text-center my-4 ml-32" >
+        <h2 className="text-xl font-semibold text-white mb-2">Add/Update Country</h2>
+        <div className="flex flex-wrap">
+          <input
+            type="text"
+            placeholder="Name"
+            value={newCountry.name}
+            onChange={(e) => setNewCountry({ ...newCountry, name: e.target.value })}
+            className="w-full md:w-64 px-4 py-2 bg-green-300 text-white rounded-lg border-2 hover:bg-indigo-900 mb-2 mr-2"
+          />
+          <input
+            type="text"
+            placeholder="Region"
+            value={newCountry.region}
+            onChange={(e) => setNewCountry({ ...newCountry, region: e.target.value })}
+            className="w-full md:w-64 px-4 py-2 bg-green-300 text-white rounded-lg border-2 hover:bg-indigo-900 mb-2 mr-2"
+          />
+          <input
+            type="text"
+            placeholder="Capital"
+            value={newCountry.capital}
+            onChange={(e) => setNewCountry({ ...newCountry, capital: e.target.value })}
+            className="w-full md:w-64 px-4 py-2 bg-green-300 text-white rounded-lg border-2 hover:bg-indigo-900 mb-2 mr-2"
+          />
+          <input
+            type="text"
+            placeholder="Continents"
+            value={newCountry.continents}
+            onChange={(e) => setNewCountry({ ...newCountry, continents: e.target.value })}
+            className="w-full md:w-64 px-4 py-2 bg-green-300 text-white rounded-lg border-2 hover:bg-indigo-900 mb-2 mr-2"
+          />
 
-            <input
-              type="text"
-              placeholder="Continents"
-              value={newCountry.continents}
-              onChange={(e) =>
-                setNewCountry({ ...newCountry, continents: e.target.value })
-              }
-              className="w-full md:w-64 p-2 border rounded-md mb-2"
-            />
-            {editingCountry ? (
-              <button
-                onClick={updateCountryData}
-                className="updatebutton"
-              >
-                Update
-              </button>
-            ) : (
-              <button
-                onClick={addCountry}
-                className="addbutton"
-              >
-                Add
-              </button>
-            )}
-          </div>
+          {editingCountry ? (
+            <button
+              onClick={updateCountryData}
+              className="px-2 py-1 w-24 bg-blue-500 text-black rounded-lg border-2 hover:bg-blue-700 mb-4 ml-8 "
+            >
+              Update
+            </button>
+          ) : (
+            <button
+            onClick={addCountry}
+            className="px-2 py-1 w-24 bg-blue-500 text-black rounded-lg border-2 hover:bg-blue-700 mb-4 ml-8 "
+          >
+            Add
+          </button>
+          
+          )}
         </div>
       </div>
 
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div className="countries">
+        <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-4 my-3">
           {filteredCountries.map((country, i) => (
-            <div key={i + 1} className="country-item p-4 border rounded-md shadow">
+            <div key={i + 1} className="bg-white p-4 rounded-md shadow">
               <Link to={`/country/${country.id}`}>
-                <img src={country.flags.png} alt="Flag" className="flagImage" />
+                <img src={country.flags.png} alt="Flag" className="w-32 h-20 m-auto" />
               </Link>
 
-              <div className="country-info">
-                <span className="country-name">Name: {country.name.common}</span>
+              <div className="mt-2">
+                <span className="text-lg font-semibold">Name: {country.name.common}</span>
               </div>
-              <div className="country-info">
-                <span className="country-username">Region: {country.region}</span>
+              <div>
+                <span className="text-lg">Region: {country.region}</span>
               </div>
-              <div className="country-info">
-                <span className="country-username">Capital: {country.capital}</span>
+              <div>
+                <span className="text-lg">Capital: {country.capital}</span>
               </div>
-              <div className="country-info">
-                <span className="country-username">
+              <div>
+                <span className="text-lg">
                   Translations: {country.translations && country.translations.ara && country.translations.ara.official}
                 </span>
               </div>
-              <div className="country-info">
-                <span className="country-">Continents: {country.continents}</span>
+              <div>
+                <span className="text-lg">Continents: {country.continents}</span>
               </div>
-              <div className="country-actions flex justify-between mt-2">
+              <div className="mt-4 flex justify-between">
                 <button
                   onClick={() => editCountry(country)}
-                  className="editbutton"
+                  className="px-4 py-2 bg-green-300 text-white rounded-lg border-2 hover:bg-indigo-900"
                 >
                   Edit
                 </button>
                 <button
                   onClick={() => deleteCountry(country)}
-                  className="deletebutton"
+                  className="px-4 py-2 bg-red-500 text-white rounded-lg border-2 hover:bg-indigo-900"
                 >
                   Delete
                 </button>
